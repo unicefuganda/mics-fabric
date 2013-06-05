@@ -21,6 +21,9 @@ recipe = [
   {"action":"pip", "params":["virtualenv", "virtualenvwrapper","supervisor"],
     "message":"Installing pip packages"},
 
+  # postgres
+  {"action":"sudo", "params":"-u postgres createdb -O postgres mics", "message": "creating database"}
+
   # nginx
   {"action":"put", "params":{"file":"%(FABULOUS_PATH)s/templates/nginx.conf",
     "destination":"/home/%(SERVER_USERNAME)s/nginx.conf"},
