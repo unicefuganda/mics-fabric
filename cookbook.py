@@ -22,7 +22,7 @@ recipe = [
     "message":"Installing pip packages"},
 
   # postgres
-  {"action":"sudo", "params":"-u postgres createdb -O postgres mics", "message": "creating database"}
+  {"action":"run", "params":"sudo -u postgres createdb -O postgres mics", "message": "creating database"},
 
   # nginx
   {"action":"put", "params":{"file":"%(FABULOUS_PATH)s/templates/nginx.conf",

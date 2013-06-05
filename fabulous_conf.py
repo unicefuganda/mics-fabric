@@ -33,7 +33,7 @@ fabconf['VIRTUALENV_DIR'] = "/var/www/apps/env"
 fabconf['ADMIN_EMAIL'] = "mics@thoughtworks.com"
 
 # Git username for the server
-fabconf['GIT_USERNAME'] = "sriprasanna"
+fabconf['GIT_USERNAME'] = "mics-server"
 
 # Name of the private key file used for github deployments
 fabconf['GITHUB_DEPLOY_KEY_NAME'] = "github_rsa"
