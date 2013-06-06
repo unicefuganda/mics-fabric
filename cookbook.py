@@ -50,6 +50,9 @@ recipe = [
   {"action":"run", "params":"""echo "alias webapps='cd %(APPS_DIR)s'" >> /home/%(SERVER_USERNAME)s/.profile""",
     "message":"Creating webapps alias"},
 
+  # domain code
+  {"action": "run", "params": "mkdir %(DOMAIN_HOME)s", "message": "Creating directory to store current and releases"}
+
   # webapps dir
   {"action":"sudo", "params":"mkdir -p %(APPS_DIR)s", "message":"Creating webapps directory"},
   {"action":"sudo", "params":"chown -R %(SERVER_USERNAME)s: %(APPS_DIR)s"},
@@ -71,8 +74,7 @@ recipe = [
   # install django in virtual env
   {"action":"virtualenv", "params":"pip install django",
     "message":"Installing django"},
-  {"action":"virtualenv", "params":"django-admin.py startproject %(PROJECT_NAME)s",
-    "message":"Creating a blank django project"},
+  {"action":"run", "params":"git clone -q -o deploy --depth 1 %(GIT_URL)s %(PROJECT_NAME)s", "message":"Deploying mics"},
 
   # install gunicorn in virtual env
   {"action":"virtualenv", "params":"pip install gunicorn",

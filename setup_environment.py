@@ -22,7 +22,7 @@ def fab():
     """
     start_time = time.time()
     print(_green("Started..."))
-    env.host_string = "mics-server"
+    env.host_string = fabconf['SERVER_HOSTNAME']
     _oven()
     end_time = time.time()
     print(_green("Runtime: %f minutes" % ((end_time - start_time) / 60)))
