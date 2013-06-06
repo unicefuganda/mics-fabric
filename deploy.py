@@ -60,7 +60,6 @@ def update():
     update_code()
     update_env()
     symlink()
-    copy_local_settings()
     permissions()
 
 def update_code():
@@ -72,12 +71,15 @@ def symlink():
     """Updates the symlink to the most recently deployed version"""
     if not env.has_key('current_release'):
         releases()
+    run("rm -f %(current_path)s" % { 'current_path':env.current_path })
     run("ln -nfs %(current_release)s %(current_path)s" % { 'current_release':env.current_release, 'current_path':env.current_path })
+    place_gunicorn_conf()
     run("ln -nfs %(shared_path)s/log %(current_release)s/log" % { 'shared_path':env.shared_path, 'current_release':env.current_release })
     run("ln -nfs %(shared_path)s/index %(current_release)s/index" % { 'shared_path':env.shared_path, 'current_release':env.current_release })
     run("ln -nfs %(shared_path)s/cdlm.db %(current_release)s/cdlm.db" % { 'shared_path':env.shared_path, 'current_release':env.current_release })
     run("ln -nfs %(shared_path)s/system/local.py %(current_release)s/%(app_name)s/local.py" % { 'shared_path':env.shared_path, 'current_release':env.current_release, 'app_name':env.app_name })
     # run("ln -nfs %(virtual_env)s/src/django/django/contrib/admin/media %(current_release)s/%(app_name)s/media/admin" % { 'virtual_env': fabconf["VENV_PATH"], 'current_release':env.current_release, 'app_name':env.app_name })
+    copy_local_settings()
 
 def place_gunicorn_conf():
     """Upload gunicorn conf file"""
@@ -101,15 +103,14 @@ def migrate():
     """Run the migrate task"""
     if not env.has_key('current_release'):
         releases()
-    run("source %(current_release)s/env/bin/activate; cd %(current_release)s; python %(app_name)s/manage.py migrate" % { 'current_release':env.current_release, 'app_name':env.app_name })
+    run("%(pip_activate)s; cd %(current_release)s; python manage.py migrate" % { 'pip_activate': fabconf['ACTIVATE'], 'current_release':env.current_path })
 
 def migrations():
     """Deploy and run pending migrations"""
     update_code()
     update_env()
-    migrate()
     symlink()
-    place_gunicorn_conf()
+    migrate()
     restart()
 
 def cleanup():

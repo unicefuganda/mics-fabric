@@ -23,6 +23,8 @@ recipe = [
 
   # postgres
   {"action":"run", "params":"sudo -u postgres createdb -O postgres mics", "message": "creating database"},
+  {"action":"run", "params":"sudo -u postgres psql -c \"CREATE ROLE mics WITH ENCRYPTED PASSWORD 'mics';\"", "message": "creating database user"},
+  {"action":"run", "params":"sudo -u postgres psql -c \"ALTER USER mics LOGIN;\"", "message": "adding db permissions"},
 
   # nginx
   {"action":"put", "params":{"file":"%(FABULOUS_PATH)s/templates/nginx.conf",
