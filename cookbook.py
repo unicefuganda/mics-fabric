@@ -74,7 +74,7 @@ recipe = [
   # install django in virtual env
   {"action":"virtualenv", "params":"pip install django",
     "message":"Installing django"},
-  {"action":"run", "params":"git clone -q -o deploy --depth 1 %(GIT_URL)s %(PROJECT_NAME)s", "message":"Deploying mics"},
+  {"action":"run", "params":"cd %(DOMAIN_HOME)s; git clone -q -o deploy --depth 1 %(GIT_URL)s curr", "message":"Deploying mics"},
 
   # install gunicorn in virtual env
   {"action":"virtualenv", "params":"pip install gunicorn",

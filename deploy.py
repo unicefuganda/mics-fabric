@@ -60,6 +60,7 @@ def update():
     update_code()
     update_env()
     symlink()
+    copy_local_settings()
     permissions()
 
 def update_code():
@@ -156,6 +157,10 @@ def rollback_code():
         env.current_release = "%(releases_path)s/%(current_revision)s" % { 'releases_path':env.releases_path, 'current_revision':env.current_revision }
         env.previous_release = "%(releases_path)s/%(previous_revision)s" % { 'releases_path':env.releases_path, 'previous_revision':env.previous_revision }
         run("rm %(current_path)s; ln -s %(previous_release)s %(current_path)s && rm -rf %(current_release)s" % { 'current_release':env.current_release, 'previous_release':env.previous_release, 'current_path':env.current_path })
+
+def copy_local_settings():
+    run("cp %(current_path)s/mics/localsettings.py.example %(current_path)s/mics/localsettings.py" % {'current_path':env.current_path })
+    run("cp %(current_path)s/survey/investigator_configs.py.example %(current_path)s/survey/investigator_configs.py" % {'current_path':env.current_path })
 
 def rollback():
     """Rolls back to a previous version and restarts"""
