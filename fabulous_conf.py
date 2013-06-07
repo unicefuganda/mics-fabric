@@ -63,7 +63,7 @@ fabconf['ADMIN_EMAIL'] = "mics@thoughtworks.com"
 fabconf['GIT_USERNAME'] = "mics-server"
 
 # Name of the private key file used for github deployments
-fabconf['GITHUB_DEPLOY_KEY_NAME'] = "github_rsa"
+fabconf['GITHUB_DEPLOY_KEY_NAME'] = "id_rsa"
 
 # Don't edit. Local path for deployment key you use for github
 fabconf['GITHUB_DEPLOY_KEY_PATH'] = "%s/%s" % (fabconf['SSH_PATH'], fabconf['GITHUB_DEPLOY_KEY_NAME'])

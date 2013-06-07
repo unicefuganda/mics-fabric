@@ -53,7 +53,7 @@ recipe = [
     "message":"Creating webapps alias"},
 
   # domain code
-  {"action": "run", "params": "mkdir %(DOMAIN_HOME)s", "message": "Creating directory to store current and releases"}
+  {"action": "run", "params": "mkdir %(DOMAIN_HOME)s", "message": "Creating directory to store current and releases"},
 
   # webapps dir
   {"action":"sudo", "params":"mkdir -p %(APPS_DIR)s", "message":"Creating webapps directory"},
