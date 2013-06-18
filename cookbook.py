@@ -13,7 +13,7 @@ recipe = [
 
   # List of APT packages to install
   {"action":"apt",
-    "params":["postgresql", "libpq-dev", "libxml2", "libxslt-dev", "nginx", "memcached", "git",
+    "params":["postgresql", "libpq-dev", "libxml2", "libxslt-dev", "nginx", "memcached", "libmemcached-dev", "git",
       "python-setuptools", "python-dev", "build-essential", "python-pip", "python-psycopg2"],
     "message":"Installing apt-get packages"},
 
