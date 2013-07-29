@@ -160,7 +160,7 @@ def rollback_code():
         run("rm %(current_path)s; ln -s %(previous_release)s %(current_path)s && rm -rf %(current_release)s" % { 'current_release':env.current_release, 'previous_release':env.previous_release, 'current_path':env.current_path })
 
 def copy_local_settings():
-    run("cp %(current_path)s/mics/localsettings.py.example %(current_path)s/mics/localsettings.py" % {'current_path':env.current_path })
+    run("cp /home/mics/localsettings.py %(current_path)s/mics/localsettings.py" % {'current_path':env.current_path })
     run("cp %(current_path)s/survey/investigator_configs.py.example %(current_path)s/survey/investigator_configs.py" % {'current_path':env.current_path })
 
 def rollback():
