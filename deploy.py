@@ -74,6 +74,7 @@ def symlink():
     run("rm -f %(current_path)s" % { 'current_path':env.current_path })
     run("ln -nfs %(current_release)s %(current_path)s" % { 'current_release':env.current_release, 'current_path':env.current_path })
     place_gunicorn_conf()
+    place_newrelic_conf()
     run("ln -nfs %(shared_path)s/log %(current_release)s/log" % { 'shared_path':env.shared_path, 'current_release':env.current_release })
     run("ln -nfs %(shared_path)s/index %(current_release)s/index" % { 'shared_path':env.shared_path, 'current_release':env.current_release })
     run("ln -nfs %(shared_path)s/cdlm.db %(current_release)s/cdlm.db" % { 'shared_path':env.shared_path, 'current_release':env.current_release })
@@ -85,6 +86,12 @@ def place_gunicorn_conf():
     """Upload gunicorn conf file"""
     local_path = "%s/templates/gunicorn.conf.py" % fabconf['FABULOUS_PATH']
     remote_path = "%s/gunicorn.conf.py" % fabconf['PROJECT_PATH']
+    put(local_path, remote_path)
+
+def place_newrelic_conf():
+    """Upload newrelic conf file"""
+    local_path = "%s/templates/newrelic.ini" % fabconf['FABULOUS_PATH']
+    remote_path = "%s/newrelic.ini" % fabconf['PROJECT_PATH']
     put(local_path, remote_path)
 
 def activate_virtualenv():
