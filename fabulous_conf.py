@@ -80,7 +80,7 @@ fabconf['ACTIVATE'] = "source %s/bin/activate" % fabconf['VENV_PATH']
 # Name tag for your server instance
 fabconf['INSTANCE_NAME_TAG'] = "mics Server"
 
-fabconf['NEWRELIC_KEY'] = ""
-
 # Keep your sensitive data in secret_conf.py
 from secret_conf import *
+
+fabconf['NEWRELIC_KEY'] = NEWRELIC_KEY
