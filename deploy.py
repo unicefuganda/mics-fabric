@@ -1,4 +1,5 @@
 from fabric.api import env, run, sudo, local, put
+from fabric.contrib.files import upload_template
 from fabulous_conf import *
 
 def production():
@@ -92,7 +93,7 @@ def place_newrelic_conf():
     """Upload newrelic conf file"""
     local_path = "%s/templates/newrelic.ini" % fabconf['FABULOUS_PATH']
     remote_path = "%s/newrelic.ini" % fabconf['PROJECT_PATH']
-    put(local_path, remote_path)
+    upload_template(filename = local_path, destination = remote_path, context = fabconf)
 
 def activate_virtualenv():
     """Activate virtual env"""
