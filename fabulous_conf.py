@@ -79,3 +79,7 @@ fabconf['ACTIVATE'] = "source %s/bin/activate" % fabconf['VENV_PATH']
 
 # Name tag for your server instance
 fabconf['INSTANCE_NAME_TAG'] = "mics Server"
+
+fabconf['NEWRELIC_KEY'] = ""
+
+from secret_conf import *
