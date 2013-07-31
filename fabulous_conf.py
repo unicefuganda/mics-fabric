@@ -82,4 +82,5 @@ fabconf['INSTANCE_NAME_TAG'] = "mics Server"
 
 fabconf['NEWRELIC_KEY'] = ""
 
+# Keep your sensitive data in secret_conf.py
 from secret_conf import *
