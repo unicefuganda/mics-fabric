@@ -31,8 +31,12 @@ def start():
     """Start the application servers"""
     sudo("supervisorctl start mics")
 
+def flush_memcache():
+    run("echo 'flush_all' | nc localhost 11211")
+
 def restart():
     """Restarts your application"""
+    flush_memcache()
     sudo("supervisorctl restart mics")
 
 def stop():
