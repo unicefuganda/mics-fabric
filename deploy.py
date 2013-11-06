@@ -4,18 +4,25 @@ from fabulous_conf import *
 
 def production():
     """Defines production environment"""
-    env.user = fabconf['SERVER_USERNAME']
-    env.key_filename = fabconf['SSH_PRIVATE_KEY_PATH']
-    env.hosts = [fabconf['SERVER_HOSTNAME'], ]
-    env.base_dir = fabconf['APPS_DIR']
-    env.app_name = fabconf['PROJECT_NAME']
-    env.domain_name = fabconf['DOMAIN_NAME']
-    env.domain_path = fabconf['DOMAIN_HOME']
-    env.current_path = fabconf['CURRENT_PATH']
-    env.releases_path = fabconf['RELEASES_PATH']
-    env.shared_path = fabconf['SHARED_PATH']
-    env.git_clone = fabconf['GIT_URL']
-    env.env_file = fabconf['ENV_FILE']
+    set_env()
+
+def staging():
+    """Defines staging environment"""
+    set_env(host=[fabconf['SERVER_STAGING_HOSTNAME'], ])
+
+def set_env(host=[fabconf['SERVER_PRODUCTION_HOSTNAME'], ]):
+  env.user = fabconf['SERVER_USERNAME']
+  env.key_filename = fabconf['SSH_PRIVATE_KEY_PATH']
+  env.hosts = host
+  env.base_dir = fabconf['APPS_DIR']
+  env.app_name = fabconf['PROJECT_NAME']
+  env.domain_name = fabconf['DOMAIN_NAME']
+  env.domain_path = fabconf['DOMAIN_HOME']
+  env.current_path = fabconf['CURRENT_PATH']
+  env.releases_path = fabconf['RELEASES_PATH']
+  env.shared_path = fabconf['SHARED_PATH']
+  env.git_clone = fabconf['GIT_URL']
+  env.env_file = fabconf['ENV_FILE']
 
 def releases():
     """List a releases made"""

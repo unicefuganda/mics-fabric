@@ -5,8 +5,11 @@ fabconf = {}
 #  Do not edit
 fabconf['FABULOUS_PATH'] = os.path.dirname(__file__)
 
-# Hostname for instance
-fabconf['SERVER_HOSTNAME'] = "mics-server"
+# Hostname for production instance -- to add in /etc/hosts
+fabconf['SERVER_PRODUCTION_HOSTNAME'] = "mics-server"
+
+# Hostname for staging instance -- edit /etc/hosts
+fabconf['SERVER_STAGING_HOSTNAME'] = "mics-test-server"
 
 # Username for connecting to instaces
 fabconf['SERVER_USERNAME'] = "mics"
