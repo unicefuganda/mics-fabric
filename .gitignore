@@ -1,3 +1,4 @@
+supervisor_celery_raw_conf
 .vagrant
 *.pyc
 secret_conf.py
